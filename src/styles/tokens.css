@@ -1,0 +1,83 @@
+/* Visit Anatolia - Premium Design System Tokens */
+:root {
+  /* Editorial Palette */
+  --color-ivory: #FAF7F2;
+  --color-ivory-light: #FDFBF7;
+  --color-sand: #F2ECE1;
+  --color-sand-dark: #E5DCCB;
+  --color-stone: #D3C7B5;
+  --color-stone-muted: #8E8373;
+
+  /* Deep Tones */
+  --color-navy: #0D1B2A;
+  --color-navy-dark: #07101B;
+  --color-navy-light: #162B40;
+  --color-navy-slate: #1F364D;
+
+  /* Mediterranean & Aegean Accents */
+  --color-aegean: #1A4D68;
+  --color-turquoise: #2B7C96;
+  --color-turquoise-light: #EBF4F7;
+
+  /* Warm Accents */
+  --color-terracotta: #B85338;
+  --color-terracotta-hover: #A0442D;
+  --color-terracotta-light: #F9ECE8;
+  
+  --color-gold: #C5A059;
+  --color-gold-light: #DFC89A;
+  --color-gold-muted: #8F743F;
+
+  /* Text & Surface */
+  --text-primary: #111B24;
+  --text-secondary: #4A5568;
+  --text-muted: #718096;
+  --text-light: #F7FAFC;
+  --text-gold: #C5A059;
+
+  --bg-primary: #FAF7F2;
+  --bg-surface: #FFFFFF;
+  --bg-surface-alt: #F4EFE6;
+  --bg-dark: #0D1B2A;
+  --bg-dark-surface: #142436;
+
+  /* Borders & Dividers */
+  --border-light: rgba(20, 36, 54, 0.08);
+  --border-medium: rgba(20, 36, 54, 0.15);
+  --border-dark: rgba(255, 255, 255, 0.12);
+  --border-gold: rgba(197, 160, 89, 0.4);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Garamond, Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 2px 8px rgba(13, 27, 42, 0.04);
+  --shadow-md: 0 8px 24px rgba(13, 27, 42, 0.08);
+  --shadow-lg: 0 16px 40px rgba(13, 27, 42, 0.12);
+  --shadow-xl: 0 24px 60px rgba(13, 27, 42, 0.16);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+
+  /* Transitions */
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Radii */
+  --radius-xs: 3px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Layout */
+  --container-max: 1320px;
+  --container-narrow: 1040px;
+  --header-height: 84px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+  }
+}
