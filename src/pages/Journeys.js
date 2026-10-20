@@ -1,6 +1,9 @@
 import { JOURNEYS } from '../data/journeys.js';
+import { t } from '../i18n/index.js';
 
 export function renderJourneysPage(selectedJourneyId = null) {
+  const arrow = t('arrow', '&rarr;');
+
   return `
     <main style="padding-top: var(--header-height);">
       <!-- Hero -->
@@ -9,13 +12,13 @@ export function renderJourneysPage(selectedJourneyId = null) {
           <img src="/assets/real/destinations/seven_churches.jpg" alt="Turkey Private Tours" style="width:100%; height:100%; object-fit: cover;" />
         </div>
         <div class="container" style="position: relative; z-index: 2; max-width: 860px; text-align: center;">
-          <span class="eyebrow" style="color: var(--color-gold);">Curated Private Itineraries</span>
+          <span class="eyebrow" style="color: var(--color-gold);">${t('journeysPage.eyebrow')}</span>
           <h1 style="color: #FFFFFF; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.25rem;">
-            Private Journeys in Turkey
+            ${t('journeysPage.title')}
           </h1>
           <div class="gold-divider center"></div>
           <p style="font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 0;">
-            Every itinerary presented here represents a tested, time-optimized journey crafted by our senior destination designers. Remember: every single journey is fully customized to your schedule, preferences, and personal passions.
+            ${t('journeysPage.subtitle')}
           </p>
         </div>
       </section>
@@ -24,7 +27,7 @@ export function renderJourneysPage(selectedJourneyId = null) {
       <section class="section">
         <div class="container">
           <div style="display: flex; flex-direction: column; gap: 4rem;">
-            ${JOURNEYS.map((journey, index) => `
+            ${JOURNEYS.map((journey) => `
               <div class="journey-catalog-item" id="${journey.id}" style="background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: var(--radius-xs); overflow: hidden; box-shadow: var(--shadow-md);">
                 <div class="journey-catalog-card-grid">
                   <div style="position: relative; min-height: 280px;">
@@ -51,7 +54,7 @@ export function renderJourneysPage(selectedJourneyId = null) {
                     <!-- Route Pills -->
                     <div style="margin-bottom: 1.25rem;">
                       <span style="font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 0.4rem;">
-                        Route Highlights:
+                        ${t('journeysPage.routeHighlights')}
                       </span>
                       <div style="display: flex; flex-wrap: wrap; gap: 0.35rem;">
                         ${journey.destinations.map(d => `<span class="dest-pill">${d}</span>`).join('')}
@@ -59,16 +62,16 @@ export function renderJourneysPage(selectedJourneyId = null) {
                     </div>
 
                     <div style="background-color: var(--color-ivory); border-left: 2px solid var(--color-gold); padding: 0.75rem 1rem; margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--color-navy);">
-                      <strong>Customizable:</strong> ${journey.customizableNote}
+                      <strong>${t('common.customizable')}:</strong> ${journey.customizableNote}
                     </div>
 
                     <!-- Actions -->
                     <div style="margin-top: auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding-top: 1.25rem; border-top: 1px solid var(--border-light);">
                       <button class="btn btn-primary" onclick="window.prefillPlannerJourney('${journey.id}')">
-                        Customize This Journey &rarr;
+                        ${t('journeysPage.customizeBtn')}
                       </button>
                       <button class="btn btn-outline-dark btn-sm" onclick="window.toggleCatalogDayDetails('${journey.id}')" id="btn-toggle-${journey.id}">
-                        View Day-by-Day Itinerary &#9662;
+                        ${t('journeysPage.viewDaysBtn')}
                       </button>
                     </div>
                   </div>
@@ -77,13 +80,13 @@ export function renderJourneysPage(selectedJourneyId = null) {
                 <!-- Collapsible Day-by-Day Section -->
                 <div id="details-${journey.id}" style="display: none; background: var(--bg-surface-alt); border-top: 1px solid var(--border-medium); padding: clamp(1.25rem, 3vw, 2.5rem);">
                   <h4 style="font-size: 1.25rem; color: var(--color-navy); margin-bottom: 1rem;">
-                    Day-by-Day Itinerary: ${journey.title}
+                    ${t('journeysPage.dayByDayTitle')} ${journey.title}
                   </h4>
                   <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                     ${journey.itinerary.map(item => `
                       <div style="background: var(--bg-surface); border: 1px solid var(--border-light); padding: 1.25rem; border-radius: var(--radius-xs);">
                         <div style="display: flex; align-items: baseline; gap: 0.75rem; margin-bottom: 0.4rem;">
-                          <span style="font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--color-terracotta);">Day ${item.day}</span>
+                          <span style="font-family: var(--font-serif); font-size: 1.1rem; font-weight: 700; color: var(--color-terracotta);">${t('journeysPage.dayLabel')} ${item.day}</span>
                           <span style="font-weight: 700; color: var(--color-navy); font-size: 1rem;">${item.title}</span>
                         </div>
                         <p style="font-size: 0.92rem; color: var(--text-secondary); margin: 0; line-height: 1.6;">${item.description}</p>
@@ -93,7 +96,7 @@ export function renderJourneysPage(selectedJourneyId = null) {
 
                   <div style="margin-top: 2rem; text-align: center;">
                     <button class="btn btn-gold btn-lg" onclick="window.prefillPlannerJourney('${journey.id}')">
-                      Plan My Customized Version of This Journey
+                      ${t('journeysPage.planCustomBtn')} ${arrow}
                     </button>
                   </div>
                 </div>
@@ -106,13 +109,12 @@ export function renderJourneysPage(selectedJourneyId = null) {
       <!-- Bottom Trust Section -->
       <section class="section section-sand text-center">
         <div class="container" style="max-width: 760px;">
-          <span class="eyebrow">End-to-End Precision</span>
-          <h2 style="margin-bottom: 1rem; color: var(--color-navy);">Looking for Something Completely Different?</h2>
+          <h2 style="margin-bottom: 1rem; color: var(--color-navy);">${t('destinationsPage.bottomTitle')}</h2>
           <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem;">
-            Have a specialized interest such as Byzantine mosaics, Ottoman ceramics in İznik, private Aegean sailing, Jewish history, or an academic university seminar? We build tailor-made itineraries from a blank canvas.
+            ${t('destinationsPage.bottomDesc')}
           </p>
           <button class="btn btn-primary btn-lg open-trip-planner-btn">
-            Create My Custom Turkey Itinerary &rarr;
+            ${t('common.planMyTrip')} ${arrow}
           </button>
         </div>
       </section>

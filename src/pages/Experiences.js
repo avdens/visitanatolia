@@ -1,6 +1,9 @@
 import { EXPERIENCES } from '../data/experiences.js';
+import { t } from '../i18n/index.js';
 
 export function renderExperiencesPage() {
+  const arrow = t('arrow', '&rarr;');
+
   return `
     <main style="padding-top: var(--header-height);">
       <!-- Hero -->
@@ -9,13 +12,13 @@ export function renderExperiencesPage() {
           <img src="/assets/real/destinations/ephesus.jpg" alt="Turkish Experiences" style="width:100%; height:100%; object-fit: cover;" />
         </div>
         <div class="container" style="position: relative; z-index: 2; max-width: 860px; text-align: center;">
-          <span class="eyebrow" style="color: var(--color-gold);">Curated Special Interests</span>
+          <span class="eyebrow" style="color: var(--color-gold);">${t('experiencesPage.eyebrow')}</span>
           <h1 style="color: #FFFFFF; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.25rem;">
-            Signature Experiences in Turkey
+            ${t('experiencesPage.title')}
           </h1>
           <div class="gold-divider center"></div>
           <p style="font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 0;">
-            Beyond conventional sightseeing. We create deep encounters with Turkey's living culinary masters, ancient architectural feats, Sufi mystics, private vineyard cellars, and turquoise waters.
+            ${t('experiencesPage.subtitle')}
           </p>
         </div>
       </section>
@@ -40,7 +43,7 @@ export function renderExperiencesPage() {
                       ${exp.description}
                     </p>
                     
-                    <h4 style="font-size: 1.05rem; color: var(--color-navy); margin-bottom: 0.75rem;">Highlights of this Experience:</h4>
+                    <h4 style="font-size: 1.05rem; color: var(--color-navy); margin-bottom: 0.75rem;">${t('experiencesPage.highlightsLabel')}</h4>
                     <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
                       ${exp.highlights.map(h => `
                         <li style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.95rem; color: var(--text-primary);">
@@ -51,7 +54,7 @@ export function renderExperiencesPage() {
                     </ul>
 
                     <button class="btn btn-primary" onclick="window.prefillPlannerExperience('${exp.title}')">
-                      Add to My Custom Itinerary &rarr;
+                      ${t('experiencesPage.inquireBtn')}
                     </button>
                   </div>
 
@@ -70,12 +73,12 @@ export function renderExperiencesPage() {
       <!-- Bottom Conversion -->
       <section class="section section-sand text-center">
         <div class="container" style="max-width: 760px;">
-          <h2 style="margin-bottom: 1rem; color: var(--color-navy);">Have a Specific Passion in Mind?</h2>
+          <h2 style="margin-bottom: 1rem; color: var(--color-navy);">${t('experiencesPage.bottomTitle')}</h2>
           <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 2rem;">
-            From high-altitude botanical treks in the Pontic Alps to private classical archaeology archives in Ankara, we can weave any personal interest into your Turkey journey.
+            ${t('experiencesPage.bottomDesc')}
           </p>
           <button class="btn btn-primary btn-lg open-trip-planner-btn">
-            Inquire About a Custom Experience &rarr;
+            ${t('experiencesPage.bottomBtn')}
           </button>
         </div>
       </section>

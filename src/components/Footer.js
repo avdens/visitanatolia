@@ -1,4 +1,5 @@
 import { COMPANY_INFO } from '../data/company.js';
+import { t } from '../i18n/index.js';
 
 export function renderFooter() {
   return `
@@ -12,16 +13,16 @@ export function renderFooter() {
               <img src="/assets/real/logo.png" alt="Visit Anatolia Logo" style="height: 48px; width: auto;" />
               <div class="brand-text">
                 <span class="brand-name" style="color: #FFFFFF;">Visit Anatolia</span>
-                <span class="brand-sub">Tailor-Made Turkey Travel</span>
+                <span class="brand-sub">${t('nav.brandSub', 'Tailor-Made Turkey Travel')}</span>
               </div>
             </div>
             <p class="footer-brand-desc">
-              Visit Anatolia designs deeply personalized travel experiences across Turkey and the Eastern Mediterranean. Founded as an initiative uniting U.S.-based Alexander and Troy LLC and Turkey-based Atalante Tours, with over 30 years of premier destination management expertise.
+              ${t('footer.brandDesc')}
             </p>
             <!-- Accreditations Strip in Footer -->
             <div style="margin-top: 1.5rem;">
               <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-gold-light); display: block; margin-bottom: 0.75rem; font-weight: 600;">
-                Certified Accreditations & Memberships
+                ${t('footer.accreditationsTitle')}
               </span>
               <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
                 ${COMPANY_INFO.accreditations.map(acc => `
@@ -36,7 +37,7 @@ export function renderFooter() {
 
           <!-- Col 2: Destinations -->
           <div class="footer-col">
-            <h4 class="footer-col-title">Destinations</h4>
+            <h4 class="footer-col-title">${t('footer.destinationsTitle')}</h4>
             <div class="footer-link-list">
               <a href="#/destinations?id=istanbul" class="footer-link">Istanbul</a>
               <a href="#/destinations?id=cappadocia" class="footer-link">Cappadocia</a>
@@ -52,7 +53,7 @@ export function renderFooter() {
 
           <!-- Col 3: Journeys & Experiences -->
           <div class="footer-col">
-            <h4 class="footer-col-title">Experiences</h4>
+            <h4 class="footer-col-title">${t('footer.experiencesTitle')}</h4>
             <div class="footer-link-list">
               <a href="#/journeys?id=steps-of-st-paul" class="footer-link">In the Steps of St. Paul</a>
               <a href="#/biblical-tours" class="footer-link">Seven Churches of Revelation</a>
@@ -63,16 +64,16 @@ export function renderFooter() {
               <a href="#/experiences" class="footer-link">Gourmet & Cave Cooking</a>
               <a href="#/experiences" class="footer-link">Whirling Dervishes of Konya</a>
               <a href="#/services" class="footer-link">VIP Airport Fast Track</a>
-              <a href="#/travel-professionals" class="footer-link">Travel Professionals (B2B DMC)</a>
+              <a href="#/travel-professionals" class="footer-link">${t('nav.b2b')}</a>
             </div>
           </div>
 
           <!-- Col 4: Verified Offices -->
           <div class="footer-col">
-            <h4 class="footer-col-title">Genuine Offices</h4>
+            <h4 class="footer-col-title">${t('footer.officesTitle')}</h4>
             
             <div class="footer-office-card">
-              <div class="office-title">🇺🇸 United States Office</div>
+              <div class="office-title">${t('footer.usOffice')}</div>
               <div class="office-detail">
                 Alexander and Troy LLC<br />
                 500 Nordhoff Pl<br />
@@ -82,7 +83,7 @@ export function renderFooter() {
             </div>
 
             <div class="footer-office-card">
-              <div class="office-title">🇹🇷 Turkey Operations & DMC</div>
+              <div class="office-title">${t('footer.trOffice')}</div>
               <div class="office-detail">
                 Atalante Tours / Visit Anatolia<br />
                 Şemsettin Günaltay Cad. No: 148/3<br />
@@ -101,13 +102,13 @@ export function renderFooter() {
         <!-- Bottom Bar -->
         <div class="footer-bottom-bar">
           <div>
-            © 2026 Visit Anatolia. All rights reserved. Registered initiative of Alexander and Troy LLC (USA) and Atalante Tours (Turkey).
+            © 2026 ${t('footer.rightsReserved')}
           </div>
-          <div style="display: flex; gap: 1.5rem;">
-            <a href="#/about" class="footer-link">Our Story</a>
-            <a href="#/services" class="footer-link">DMC Services</a>
-            <a href="#/travel-professionals" class="footer-link">Travel Advisors</a>
-            <a href="#/contact" class="footer-link">Contact</a>
+          <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+            <a href="#/about" class="footer-link">${t('nav.about')}</a>
+            <a href="#/services" class="footer-link">${t('nav.services')}</a>
+            <a href="#/travel-professionals" class="footer-link">${t('nav.b2b')}</a>
+            <a href="#/contact" class="footer-link">${t('nav.contact')}</a>
           </div>
         </div>
       </div>

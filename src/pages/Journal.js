@@ -1,6 +1,9 @@
 import { ARTICLES } from '../data/journal.js';
+import { t } from '../i18n/index.js';
 
 export function renderJournalPage(articleId = null) {
+  const arrow = t('arrow', '&rarr;');
+
   if (articleId) {
     const article = ARTICLES.find(a => a.id === articleId) || ARTICLES[0];
     return `
@@ -9,7 +12,7 @@ export function renderJournalPage(articleId = null) {
         <section style="background-color: var(--color-navy-dark); color: #FFFFFF; padding: 6rem 0 4rem; position: relative;">
           <div class="container-narrow text-center">
             <a href="#/journal" style="font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-gold); font-weight: 700; display: inline-block; margin-bottom: 1.5rem;">
-              &larr; Back to Inspiration Journal
+              ${t('journalPage.backToJournal')}
             </a>
             <span class="eyebrow" style="color: var(--color-gold); display: block;">${article.category}</span>
             <h1 style="color: #FFFFFF; font-size: clamp(2.2rem, 4.5vw, 3.5rem); line-height: 1.15; margin-bottom: 1rem;">
@@ -50,12 +53,8 @@ export function renderJournalPage(articleId = null) {
             </div>
 
             <div style="border-top: 1px solid var(--border-light); padding-top: 2.5rem; margin-top: 3rem; background: var(--color-sand); padding: 2.5rem; border-radius: var(--radius-xs); text-align: center;">
-              <h3 style="font-size: 1.6rem; color: var(--color-navy); margin-bottom: 0.75rem;">Inspired to Experience This in Person?</h3>
-              <p style="max-width: 600px; margin: 0 auto 1.5rem; color: var(--text-secondary);">
-                Every journey is designed around your unique travel style and personal interests. Talk to our Turkey travel designers today.
-              </p>
               <button class="btn btn-primary btn-lg open-trip-planner-btn">
-                Plan My Turkey Journey &rarr;
+                ${t('common.planMyTrip')} ${arrow}
               </button>
             </div>
           </div>
@@ -69,13 +68,13 @@ export function renderJournalPage(articleId = null) {
     <main style="padding-top: var(--header-height);">
       <section style="background-color: var(--color-navy-dark); color: #FFFFFF; padding: 5rem 0 4rem; position: relative;">
         <div class="container" style="max-width: 860px; text-align: center;">
-          <span class="eyebrow" style="color: var(--color-gold);">The Anatolian Journal</span>
+          <span class="eyebrow" style="color: var(--color-gold);">${t('journalPage.eyebrow')}</span>
           <h1 style="color: #FFFFFF; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.25rem;">
-            Travel Inspiration & Insider Guides
+            ${t('journalPage.title')}
           </h1>
           <div class="gold-divider center"></div>
           <p style="font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 0;">
-            Expert advice, biblical archaeology insights, culinary perspectives, and travel planning wisdom penned by our senior Turkey travel specialists.
+            ${t('journalPage.subtitle')}
           </p>
         </div>
       </section>
@@ -97,7 +96,7 @@ export function renderJournalPage(articleId = null) {
                   <p class="journey-card-desc">${art.summary}</p>
                   <div style="margin-top: auto; padding-top: 1.25rem; border-top: 1px solid var(--border-light); display: flex; align-items: center; justify-content: space-between;">
                     <span style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--color-terracotta);">
-                      Read Guide &rarr;
+                      ${t('common.readArticle')} ${arrow}
                     </span>
                   </div>
                 </div>

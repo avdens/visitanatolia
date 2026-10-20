@@ -1,8 +1,10 @@
 import { BIBLICAL_DATA } from '../data/biblicalData.js';
 import { JOURNEYS } from '../data/journeys.js';
+import { t } from '../i18n/index.js';
 
 export function renderBiblicalToursPage() {
   const stPaulTour = JOURNEYS.find(j => j.id === 'steps-of-st-paul') || JOURNEYS[0];
+  const arrow = t('arrow', '&rarr;');
 
   return `
     <main style="padding-top: var(--header-height);">
@@ -14,21 +16,21 @@ export function renderBiblicalToursPage() {
         <div class="container" style="position: relative; z-index: 2; max-width: 900px; text-align: center;">
           <div class="hero-badge" style="margin-bottom: 1.25rem;">
             <span>✦</span>
-            <span>Spiritual Pilgrimage & Biblical Archaeology</span>
+            <span>${t('biblicalPage.eyebrow')}</span>
           </div>
           <h1 style="color: #FFFFFF; font-size: clamp(2.5rem, 5vw, 4.25rem); line-height: 1.1; margin-bottom: 1.25rem;">
-            Biblical Tours in Turkey & Asia Minor
+            ${t('biblicalPage.title')}
           </h1>
           <div class="gold-divider center"></div>
           <p style="font-size: 1.2rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 2rem;">
-            Walk the sacred soil where the Apostle Paul was born and embarked on his missionary journeys, visit the cave grotto of Antioch where believers were first called Christians, explore the Seven Churches of Revelation, and stand where the early Church councils shaped the Christian creed.
+            ${t('biblicalPage.summary')}
           </p>
           <div style="display: flex; justify-content: center; gap: 1.25rem; flex-wrap: wrap;">
             <button class="btn btn-gold btn-lg open-trip-planner-btn" onclick="window.prefillPlannerBiblical()">
-              Plan a Biblical Journey &rarr;
+              ${t('biblicalPage.ctaBtn')}
             </button>
             <a href="#itinerary-st-paul" class="btn btn-outline btn-lg">
-              View 15-Day St. Paul Itinerary &darr;
+              ${t('journeysPage.viewDaysBtn')}
             </a>
           </div>
         </div>
@@ -39,28 +41,22 @@ export function renderBiblicalToursPage() {
         <div class="container">
           <div class="split-feature-grid" style="align-items: center;">
             <div>
-              <span class="eyebrow">Apostolic Heritage</span>
+              <span class="eyebrow">${t('biblicalPage.eyebrow')}</span>
               <h2 style="color: var(--color-navy); margin-bottom: 1.25rem;">
-                Two-Thirds of the New Testament Unfolded in Turkey
+                ${t('biblicalPage.subtitle')}
               </h2>
               <p class="lead">
-                While many travelers instinctively think of Jerusalem when planning a pilgrimage, Turkey was the crucible where Christianity transitioned from a local movement into a world faith.
-              </p>
-              <p>
-                From Paul's birthplace in <strong>Tarsus</strong> and the cave sanctuary in <strong>Antioch on the Orontes</strong> to his sermons at the synagogues of <strong>Pisidian Antioch</strong> and the Great Theatre of <strong>Ephesus</strong>, modern Turkey preserves the most intact Roman and early Christian archaeological sites in the world.
-              </p>
-              <p>
-                Visit Anatolia has designed Christian heritage journeys for over 30 years. We partner directly with pastors, university seminaries, Bible study groups, and church congregations to craft spiritually reverent, archaeologically rigorous, and time-optimized pilgrimages.
+                ${t('biblicalPage.summary')}
               </p>
               <div class="gold-divider"></div>
               <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
                 <div>
                   <div style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-terracotta); font-weight: 700;">7</div>
-                  <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Churches of Revelation</div>
+                  <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">${t('biblicalPage.sevenChurchesTitle')}</div>
                 </div>
                 <div>
                   <div style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-terracotta); font-weight: 700;">3</div>
-                  <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Missionary Journeys of Paul</div>
+                  <div style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Journeys of Paul</div>
                 </div>
                 <div>
                   <div style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-terracotta); font-weight: 700;">7</div>
@@ -88,11 +84,11 @@ export function renderBiblicalToursPage() {
       <section class="section" id="seven-churches">
         <div class="container">
           <div class="section-header text-center">
-            <span class="eyebrow">The Johannine Vision</span>
-            <h2 class="section-title">The Seven Churches of Revelation</h2>
+            <span class="eyebrow">${t('biblicalPage.eyebrow')}</span>
+            <h2 class="section-title">${t('biblicalPage.sevenChurchesTitle')}</h2>
             <div class="gold-divider center"></div>
             <p class="section-subtitle">
-              Ponder the messages penned by the Apostle John from the island of Patmos to the historic Christian congregations of first-century Roman Asia.
+              ${t('biblicalPage.sevenChurchesSub')}
             </p>
           </div>
 
@@ -121,11 +117,11 @@ export function renderBiblicalToursPage() {
       <section class="section section-sand">
         <div class="container">
           <div class="section-header text-center">
-            <span class="eyebrow">Sacred Geography</span>
-            <h2 class="section-title">Key Apostolic & Early Church Sites</h2>
+            <span class="eyebrow">${t('biblicalPage.eyebrow')}</span>
+            <h2 class="section-title">${t('biblicalPage.apostolicTitle')}</h2>
             <div class="gold-divider center"></div>
             <p class="section-subtitle">
-              Explore the critical milestones of the Apostle Paul, Peter, John, and the early Church Fathers.
+              ${t('biblicalPage.apostolicSub')}
             </p>
           </div>
 
@@ -147,22 +143,22 @@ export function renderBiblicalToursPage() {
       <section class="section section-dark" id="itinerary-st-paul">
         <div class="container">
           <div class="section-header text-center">
-            <span class="eyebrow" style="color: var(--color-gold);">Flagship Pilgrimage Itinerary</span>
-            <h2 class="section-title" style="color: #FFFFFF;">In the Steps of St. Paul & The Seven Churches</h2>
+            <span class="eyebrow" style="color: var(--color-gold);">${t('biblicalPage.eyebrow')}</span>
+            <h2 class="section-title" style="color: #FFFFFF;">${stPaulTour.title}</h2>
             <div class="gold-divider center"></div>
             <p class="section-subtitle" style="color: rgba(255,255,255,0.85); max-width: 800px; margin: 0 auto;">
-              15 Days / 14 Nights &bull; Ankara, Cappadocia, Antioch, Tarsus, Konya, Perge, Pamukkale, Seven Churches, Ephesus, Pergamum, Nicaea & Istanbul
+              ${stPaulTour.subtitle} &bull; <strong>${stPaulTour.duration}</strong>
             </p>
           </div>
 
           <div class="featured-itinerary-box">
             <div class="featured-itinerary-header">
               <p style="font-size: 1.05rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 1.5rem;">
-                Starting from Ankara or Istanbul, follow the exact missionary routes of Paul and Barnabas. Breathe the air of the magical historical sites where the Gospel first transformed ancient civilization, while resting in comfortable luxury hotels and premier cave suites.
+                ${stPaulTour.overview}
               </p>
               <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                 <button class="btn btn-gold btn-lg open-trip-planner-btn" onclick="window.prefillPlannerJourney('steps-of-st-paul')">
-                  Customize This 15-Day Pilgrimage &rarr;
+                  ${t('journeysPage.customizeBtn')}
                 </button>
               </div>
             </div>
@@ -172,7 +168,7 @@ export function renderBiblicalToursPage() {
                 <div class="itinerary-day-row" onclick="window.toggleItineraryDay(this)">
                   <div style="display: flex; justify-content: space-between; align-items: center;">
                     <div style="display: flex; align-items: center;">
-                      <span class="day-num-badge">Day ${day.day.toString().padStart(2, '0')}</span>
+                      <span class="day-num-badge">${t('journeysPage.dayLabel')} ${day.day.toString().padStart(2, '0')}</span>
                       <span class="day-title-text">${day.title}</span>
                     </div>
                     <span style="color: var(--color-gold); font-size: 1.1rem;">&#9662;</span>
@@ -191,12 +187,12 @@ export function renderBiblicalToursPage() {
       <section class="section section-sand">
         <div class="container" style="max-width: 900px;">
           <div style="background: var(--bg-surface); border: 1px solid var(--border-medium); padding: 3rem clamp(1.5rem, 4vw, 3.5rem); border-radius: var(--radius-xs); box-shadow: var(--shadow-lg);">
-            <span class="eyebrow">${BIBLICAL_DATA.pastorResources.title}</span>
+            <span class="eyebrow">${t('biblicalPage.ctaTitle')}</span>
             <h2 style="font-size: clamp(1.8rem, 3vw, 2.4rem); color: var(--color-navy); margin-bottom: 1.25rem;">
-              Partnering with Churches, Pastors & Seminaries
+              ${t('biblicalPage.ctaTitle')}
             </h2>
             <p style="font-size: 1.05rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 1.75rem;">
-              Organizing a church or seminary study tour requires meticulous care, theological alignment, and seamless execution. We assist pastors and ministry coordinators every step of the way:
+              ${t('biblicalPage.ctaSub')}
             </p>
 
             <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem;">
@@ -210,11 +206,11 @@ export function renderBiblicalToursPage() {
 
             <div style="border-top: 1px solid var(--border-light); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
               <div>
-                <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-navy); display: block;">Speak with our Biblical Tour Specialist:</span>
+                <span style="font-size: 0.85rem; font-weight: 600; color: var(--color-navy); display: block;">${t('nav.callUs')}:</span>
                 <span style="font-size: 0.95rem; color: var(--color-terracotta); font-weight: 700;">+1 (201) 490-2212 &bull; contact@visitanatolia.com</span>
               </div>
               <button class="btn btn-primary" onclick="window.prefillPlannerBiblical()">
-                Request Church Group Proposal &rarr;
+                ${t('biblicalPage.ctaBtn')}
               </button>
             </div>
           </div>

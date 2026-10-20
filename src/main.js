@@ -2,9 +2,13 @@ import './styles/tokens.css';
 import './styles/base.css';
 import './styles/components.css';
 
+import { initI18n, setLanguage, t, getLanguage } from './i18n/index.js';
 import { initRouter } from './router.js';
 import { populateDestinationModal } from './components/DestinationModal.js';
 import { DESTINATIONS } from './data/destinations.js';
+
+// Initialize i18n
+initI18n();
 
 let currentPlannerStep = 1;
 const totalPlannerSteps = 5;
@@ -39,7 +43,60 @@ window.attachAppListeners = function () {
     handleScroll();
   }
 
-  // 2. Mobile Drawer & Backdrop
+  // 2. Language Selector Handlers
+  const langDropdown = document.getElementById('langSelectorDropdown');
+  const langToggleBtn = document.getElementById('langToggleBtn');
+
+  if (langToggleBtn && langDropdown) {
+    langToggleBtn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      langDropdown.classList.toggle('open');
+      const isOpen = langDropdown.classList.contains('open');
+      langToggleBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    };
+  }
+
+  // Desktop Language Options
+  document.querySelectorAll('.lang-option-btn').forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const lang = btn.dataset.lang;
+      if (lang) {
+        setLanguage(lang);
+        langDropdown?.classList.remove('open');
+      }
+    };
+  });
+
+  // Mobile Drawer Language Options
+  document.querySelectorAll('.mobile-lang-btn').forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      const lang = btn.dataset.lang;
+      if (lang) {
+        setLanguage(lang);
+        const mobileDrawer = document.getElementById('mobileDrawer');
+        const drawerBackdrop = document.getElementById('drawerBackdrop');
+        mobileDrawer?.classList.remove('open');
+        drawerBackdrop?.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    };
+  });
+
+  // Close Language Dropdown when clicking outside
+  const handleOutsideClick = (e) => {
+    if (langDropdown && !langDropdown.contains(e.target)) {
+      langDropdown.classList.remove('open');
+      langToggleBtn?.setAttribute('aria-expanded', 'false');
+    }
+  };
+  document.removeEventListener('click', handleOutsideClick);
+  document.addEventListener('click', handleOutsideClick);
+
+  // 3. Mobile Drawer & Backdrop
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const mobileDrawer = document.getElementById('mobileDrawer');
   const closeDrawerBtn = document.getElementById('closeDrawerBtn');
@@ -65,7 +122,7 @@ window.attachAppListeners = function () {
     link.onclick = closeDrawer;
   });
 
-  // 3. Open Trip Planner Buttons
+  // 4. Open Trip Planner Buttons
   document.querySelectorAll('.open-trip-planner-btn').forEach(btn => {
     btn.onclick = (e) => {
       e.preventDefault();
@@ -73,7 +130,7 @@ window.attachAppListeners = function () {
     };
   });
 
-  // 4. Close Trip Planner Buttons
+  // 5. Close Trip Planner Buttons
   const closePlannerBtn = document.getElementById('closePlannerModalBtn');
   const plannerModal = document.getElementById('tripPlannerModal');
   const closeSuccessBtn = document.getElementById('closeSuccessBtn');
@@ -90,7 +147,7 @@ window.attachAppListeners = function () {
     };
   }
 
-  // 5. Trip Planner Navigation (Next / Prev / Form Submit)
+  // 6. Trip Planner Navigation (Next / Prev / Form Submit)
   const nextBtn = document.getElementById('plannerNextBtn');
   const prevBtn = document.getElementById('plannerPrevBtn');
   const form = document.getElementById('tripPlannerForm');
@@ -108,7 +165,7 @@ window.attachAppListeners = function () {
     };
   }
 
-  // 6. Option Box Selection Handlers
+  // 7. Option Box Selection Handlers
   document.querySelectorAll('.option-box').forEach(box => {
     const input = box.querySelector('input');
     if (!input) return;
@@ -128,7 +185,7 @@ window.attachAppListeners = function () {
     };
   });
 
-  // 7. Destination Modal Close
+  // 8. Destination Modal Close
   const closeDestBtn = document.getElementById('closeDestModalBtn');
   const destModal = document.getElementById('destinationModal');
   if (closeDestBtn) {
@@ -201,9 +258,13 @@ window.renderPlannerStepView = function () {
   const stepIndicator = document.getElementById('stepIndicator');
   const stepNameEl = document.getElementById('stepName');
 
+  const stepTemplate = t('common.stepOf', 'Step {current} of {total}');
+  const localizedStepIndicator = stepTemplate.replace('{current}', currentPlannerStep).replace('{total}', totalPlannerSteps);
+  const localizedStepName = t(`planner.stepNames.${currentPlannerStep}`, stepNames[currentPlannerStep] || '');
+
   if (progressFill) progressFill.style.width = `${(currentPlannerStep / totalPlannerSteps) * 100}%`;
-  if (stepIndicator) stepIndicator.textContent = `Step ${currentPlannerStep} of ${totalPlannerSteps}`;
-  if (stepNameEl) stepNameEl.textContent = stepNames[currentPlannerStep] || '';
+  if (stepIndicator) stepIndicator.textContent = localizedStepIndicator;
+  if (stepNameEl) stepNameEl.textContent = localizedStepName;
 
   // Controls Visibility
   const prevBtn = document.getElementById('plannerPrevBtn');
@@ -211,14 +272,25 @@ window.renderPlannerStepView = function () {
   const submitBtn = document.getElementById('plannerSubmitBtn');
   const footerControls = document.getElementById('plannerFooterControls');
 
+  const arrow = t('arrow', '&rarr;');
+
   if (footerControls) footerControls.style.display = 'flex';
-  if (prevBtn) prevBtn.style.visibility = currentPlannerStep === 1 ? 'hidden' : 'visible';
+  if (prevBtn) {
+    prevBtn.style.visibility = currentPlannerStep === 1 ? 'hidden' : 'visible';
+    prevBtn.textContent = t('common.back', 'Back');
+  }
 
   if (currentPlannerStep === totalPlannerSteps) {
     if (nextBtn) nextBtn.style.display = 'none';
-    if (submitBtn) submitBtn.style.display = 'inline-flex';
+    if (submitBtn) {
+      submitBtn.style.display = 'inline-flex';
+      submitBtn.textContent = t('planner.submitBtn', 'Request My Custom Itinerary');
+    }
   } else {
-    if (nextBtn) nextBtn.style.display = 'inline-flex';
+    if (nextBtn) {
+      nextBtn.style.display = 'inline-flex';
+      nextBtn.innerHTML = `${t('common.continue', 'Continue')} ${arrow}`;
+    }
     if (submitBtn) submitBtn.style.display = 'none';
   }
 
@@ -250,15 +322,14 @@ window.handlePlannerSubmit = function (form) {
   const progressFill = document.getElementById('plannerProgressFill');
   if (progressFill) progressFill.style.width = '100%';
   const stepIndicator = document.getElementById('stepIndicator');
-  if (stepIndicator) stepIndicator.textContent = 'Completed';
+  if (stepIndicator) stepIndicator.textContent = '✓';
   const stepNameEl = document.getElementById('stepName');
-  if (stepNameEl) stepNameEl.textContent = 'Proposal In Progress';
+  if (stepNameEl) stepNameEl.textContent = t('planner.successTitle', 'Received');
 };
 
 // Prefill Actions
 window.prefillPlannerJourney = function (journeyId) {
   window.openTripPlanner();
-  // Select matching destination or note
   const notesTextarea = document.querySelector('textarea[name="notes"]');
   if (notesTextarea) {
     notesTextarea.value = `Interested in the "${journeyId.replace(/-/g, ' ').toUpperCase()}" tour program. Please customize based on our preferred travel dates.`;
@@ -267,7 +338,6 @@ window.prefillPlannerJourney = function (journeyId) {
 
 window.prefillPlannerBiblical = function () {
   window.openTripPlanner();
-  // Select Biblical in Step 2 & Seven Churches in Step 1
   document.querySelectorAll('input[value="Seven Churches"], input[value="Biblical & Christian Heritage"]').forEach(input => {
     input.checked = true;
     input.closest('.option-box')?.classList.add('selected');
@@ -336,7 +406,9 @@ window.toggleCatalogDayDetails = function (journeyId) {
   const isShown = details.style.display === 'block';
   details.style.display = isShown ? 'none' : 'block';
   if (btn) {
-    btn.innerHTML = isShown ? 'View Day-by-Day Itinerary &#9662;' : 'Hide Day-by-Day Itinerary &#9652;';
+    btn.innerHTML = isShown
+      ? `${t('common.viewItinerary')} &#9662;`
+      : `${t('common.hideItinerary')} &#9652;`;
   }
 };
 
@@ -354,9 +426,9 @@ window.handleContactSubmit = function (e) {
   form.innerHTML = `
     <div style="text-align: center; padding: 2.5rem 1rem;">
       <div style="font-size: 2.5rem; color: var(--color-terracotta); margin-bottom: 0.5rem;">✓</div>
-      <h3 style="font-size: 1.5rem; color: var(--color-navy); margin-bottom: 0.5rem;">Message Received</h3>
+      <h3 style="font-size: 1.5rem; color: var(--color-navy); margin-bottom: 0.5rem;">${t('planner.successTitle', 'Message Received')}</h3>
       <p style="color: var(--text-secondary); line-height: 1.6;">
-        Thank you, <strong>${name}</strong>. Our team in Englewood, New Jersey and Istanbul has received your message and will reply within 24 hours.
+        ${t('planner.successMsg', 'Thank you. Our team will reply within 24 hours.').replace('<span id="confirmName">Valued Guest</span>', `<strong>${name}</strong>`)}
       </p>
     </div>
   `;

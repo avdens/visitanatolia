@@ -1,7 +1,10 @@
 import { SERVICES } from '../data/services.js';
 import { COMPANY_INFO } from '../data/company.js';
+import { t } from '../i18n/index.js';
 
 export function renderServicesPage() {
+  const arrow = t('arrow', '&rarr;');
+
   return `
     <main style="padding-top: var(--header-height);">
       <!-- Hero -->
@@ -10,13 +13,13 @@ export function renderServicesPage() {
           <img src="/assets/real/destinations/istanbul.jpg" alt="Turkey Travel Services" style="width:100%; height:100%; object-fit: cover;" />
         </div>
         <div class="container" style="position: relative; z-index: 2; max-width: 860px; text-align: center;">
-          <span class="eyebrow" style="color: var(--color-gold);">Full-Service Destination Management</span>
+          <span class="eyebrow" style="color: var(--color-gold);">${t('servicesPage.eyebrow')}</span>
           <h1 style="color: #FFFFFF; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.25rem;">
-            Services & DMC Capabilities
+            ${t('servicesPage.title')}
           </h1>
           <div class="gold-divider center"></div>
           <p style="font-size: 1.15rem; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 0;">
-            From tailor-made individual FIT journeys to private VIP airport fast-track clearance, luxury Mercedes chauffeur transfers, private gulet charters, and executive corporate event management.
+            ${t('servicesPage.subtitle')}
           </p>
         </div>
       </section>
@@ -38,14 +41,14 @@ export function renderServicesPage() {
                 </p>
                 <div style="margin-bottom: 1.5rem;">
                   <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); font-weight: 700; display: block; margin-bottom: 0.5rem;">
-                    Key Capabilities:
+                    ${t('servicesPage.keyCapabilities')}
                   </span>
                   <ul style="font-size: 0.85rem; color: var(--text-primary); display: flex; flex-direction: column; gap: 0.4rem;">
                     ${srv.features.map(f => `<li style="display:flex; gap:0.5rem;"><span style="color:var(--color-gold);">✓</span> ${f}</li>`).join('')}
                   </ul>
                 </div>
                 <button class="btn btn-outline-dark btn-sm" style="width: 100%; margin-top: auto;" onclick="window.prefillPlannerExperience('${srv.title}')">
-                  Inquire About This Service &rarr;
+                  ${t('servicesPage.inquireBtn')}
                 </button>
               </div>
             `).join('')}
@@ -56,10 +59,10 @@ export function renderServicesPage() {
       <!-- Trust Accreditations Banner -->
       <section class="section section-sand text-center">
         <div class="container" style="max-width: 900px;">
-          <span class="eyebrow">Fully Licensed & Certified</span>
-          <h2 style="margin-bottom: 1rem; color: var(--color-navy);">Certified Industry Leadership</h2>
+          <span class="eyebrow">${t('servicesPage.bottomTitle')}</span>
+          <h2 style="margin-bottom: 1rem; color: var(--color-navy);">${t('servicesPage.bottomTitle')}</h2>
           <p style="margin-bottom: 2.5rem; color: var(--text-secondary);">
-            Visit Anatolia holds the highest recognized industry licenses both in Turkey and internationally.
+            ${t('servicesPage.bottomSub')}
           </p>
           <div style="display: flex; justify-content: center; align-items: center; gap: 2rem; flex-wrap: wrap;">
             ${COMPANY_INFO.accreditations.map(acc => `
