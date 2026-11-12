@@ -1,7 +1,33 @@
 import { COMPANY_INFO } from '../data/company.js';
-import { t } from '../i18n/index.js';
+import { t, getLanguage } from '../i18n/index.js';
 
 export function renderFooter() {
+  const isTr = getLanguage() === 'tr';
+
+  const trOfficeCard = `
+    <div class="footer-office-card">
+      <div class="office-title">${isTr ? 'Main Ofis' : t('footer.trOffice', '🇹🇷 Turkey Operations & DMC')}</div>
+      <div class="office-detail">
+        Visit Anatolia<br />
+        Şemsettin Günaltay Cad. No: 148/3<br />
+        Erenköy, 34738 İstanbul, Turkey<br />
+        <a href="tel:+902163024325" style="color: var(--color-gold-light); font-weight: 600;">+90 (216) 302-4325</a>
+      </div>
+    </div>
+  `;
+
+  const usOfficeCard = `
+    <div class="footer-office-card">
+      <div class="office-title">${isTr ? '🇺🇸 US Ofis' : 'Main Office'}</div>
+      <div class="office-detail">
+        Alexander and Troy LLC<br />
+        500 Nordhoff Pl<br />
+        Englewood, NJ 07631, USA<br />
+        <a href="tel:+12014902212" style="color: var(--color-gold-light); font-weight: 600;">+1 (201) 490-2212</a> / <a href="tel:+12016365082" style="color: var(--color-gold-light);">+1 (201) 636-5082</a>
+      </div>
+    </div>
+  `;
+
   return `
     <footer class="site-footer">
       <div class="container">
@@ -13,7 +39,7 @@ export function renderFooter() {
               <img src="/assets/real/logo.png" alt="Visit Anatolia Logo" style="height: 48px; width: auto;" />
               <div class="brand-text">
                 <span class="brand-name" style="color: #FFFFFF;">Visit Anatolia</span>
-                <span class="brand-sub">${t('nav.brandSub', 'Tailor-Made Turkey Travel')}</span>
+                <span class="brand-sub" lang="en">ALEXANDER AND TROY TOURS &middot; SINCE 1999</span>
               </div>
             </div>
             <p class="footer-brand-desc">
@@ -58,6 +84,7 @@ export function renderFooter() {
               <a href="#/journeys?id=steps-of-st-paul" class="footer-link">In the Steps of St. Paul</a>
               <a href="#/biblical-tours" class="footer-link">Seven Churches of Revelation</a>
               <a href="#/journeys?id=essential-turkey" class="footer-link">Essential Turkey (10-12 Days)</a>
+              <a href="#/fit" class="footer-link">FIT &amp; Tailor-Made Turkey</a>
               <a href="#/journeys?id=gulet-blue-cruise" class="footer-link">Private Gulet Yacht Charters</a>
               <a href="#/journeys?id=anatolian-antiquities" class="footer-link">Anatolian Antiquities</a>
               <a href="#/journeys?id=riches-of-judaism" class="footer-link">Riches of Judaism</a>
@@ -72,25 +99,7 @@ export function renderFooter() {
           <div class="footer-col">
             <h4 class="footer-col-title">${t('footer.officesTitle')}</h4>
             
-            <div class="footer-office-card">
-              <div class="office-title">${t('footer.usOffice')}</div>
-              <div class="office-detail">
-                Alexander and Troy LLC<br />
-                500 Nordhoff Pl<br />
-                Englewood, NJ 07631, USA<br />
-                <a href="tel:+12014902212" style="color: var(--color-gold-light); font-weight: 600;">+1 (201) 490-2212</a> / <a href="tel:+12016365082" style="color: var(--color-gold-light);">+1 (201) 636-5082</a>
-              </div>
-            </div>
-
-            <div class="footer-office-card">
-              <div class="office-title">${t('footer.trOffice')}</div>
-              <div class="office-detail">
-                Atalante Tours / Visit Anatolia<br />
-                Şemsettin Günaltay Cad. No: 148/3<br />
-                Erenköy, 34738 İstanbul, Turkey<br />
-                <a href="tel:+902163024325" style="color: var(--color-gold-light); font-weight: 600;">+90 (216) 302-4325</a>
-              </div>
-            </div>
+            ${isTr ? `${trOfficeCard}${usOfficeCard}` : `${usOfficeCard}${trOfficeCard}`}
 
             <div style="margin-top: 1rem;">
               <span style="font-size: 0.85rem; color: rgba(255,255,255,0.7);">Direct Inquiry:</span><br />

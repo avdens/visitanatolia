@@ -1,8 +1,51 @@
 import { COMPANY_INFO } from '../data/company.js';
-import { t } from '../i18n/index.js';
+import { t, getLanguage } from '../i18n/index.js';
 
 export function renderAboutPage() {
   const arrow = t('arrow', '&rarr;');
+  const isTr = getLanguage() === 'tr';
+
+  const trOfficeCard = `
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-medium); padding: clamp(1.25rem, 3vw, 2.5rem); border-radius: var(--radius-xs); box-shadow: var(--shadow-md);">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; gap: 0.5rem; flex-wrap: wrap;">
+        <h3 style="font-size: 1.4rem; color: var(--color-navy); margin: 0;">${isTr ? 'Main Ofis' : t('footer.trOffice')}</h3>
+        <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--color-gold); background: var(--color-navy); padding: 3px 8px; border-radius: 3px;">
+          ${isTr ? 'İstanbul Merkez' : 'Istanbul DMC'}
+        </span>
+      </div>
+      <div style="font-weight: 600; color: var(--color-navy); margin-bottom: 0.5rem;">
+        Visit Anatolia
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
+        Şemsettin Günaltay Cad. No: 148/3<br />
+        Erenköy, 34738 Kadıköy, İstanbul, Turkey
+      </p>
+      <div style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 1.25rem;">
+        <strong>Telephone:</strong> <a href="tel:+902163024325" style="color: var(--color-terracotta); font-weight: 600;">+90 (216) 302-4325</a>
+      </div>
+    </div>
+  `;
+
+  const usOfficeCard = `
+    <div style="background: var(--bg-surface); border: 1px solid var(--border-medium); padding: clamp(1.25rem, 3vw, 2.5rem); border-radius: var(--radius-xs); box-shadow: var(--shadow-md);">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; gap: 0.5rem; flex-wrap: wrap;">
+        <h3 style="font-size: 1.4rem; color: var(--color-navy); margin: 0;">${isTr ? '🇺🇸 US Ofis' : 'Main Office'}</h3>
+        <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--color-gold); background: var(--color-navy); padding: 3px 8px; border-radius: 3px;">
+          ${isTr ? 'New Jersey HQ' : 'Main Office HQ'}
+        </span>
+      </div>
+      <div style="font-weight: 600; color: var(--color-navy); margin-bottom: 0.5rem;">
+        Alexander and Troy LLC
+      </div>
+      <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
+        500 Nordhoff Pl<br />
+        Englewood, NJ 07631, USA
+      </p>
+      <div style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.5rem;">
+        <strong>Telephone:</strong> <a href="tel:+12014902212" style="color: var(--color-terracotta); font-weight: 600;">+1 (201) 490-2212</a>
+      </div>
+    </div>
+  `;
 
   return `
     <main style="padding-top: var(--header-height);">
@@ -107,45 +150,7 @@ export function renderAboutPage() {
           </div>
 
           <div class="office-two-col-grid">
-            <!-- USA Office -->
-            <div style="background: var(--bg-surface); border: 1px solid var(--border-medium); padding: clamp(1.25rem, 3vw, 2.5rem); border-radius: var(--radius-xs); box-shadow: var(--shadow-md);">
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; gap: 0.5rem; flex-wrap: wrap;">
-                <h3 style="font-size: 1.4rem; color: var(--color-navy); margin: 0;">${t('footer.usOffice')}</h3>
-                <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--color-gold); background: var(--color-navy); padding: 3px 8px; border-radius: 3px;">
-                  New Jersey HQ
-                </span>
-              </div>
-              <div style="font-weight: 600; color: var(--color-navy); margin-bottom: 0.5rem;">
-                Alexander and Troy LLC
-              </div>
-              <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
-                500 Nordhoff Pl<br />
-                Englewood, NJ 07631, USA
-              </p>
-              <div style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 0.5rem;">
-                <strong>Telephone:</strong> <a href="tel:+12014902212" style="color: var(--color-terracotta); font-weight: 600;">+1 (201) 490-2212</a>
-              </div>
-            </div>
-
-            <!-- Turkey Office -->
-            <div style="background: var(--bg-surface); border: 1px solid var(--border-medium); padding: clamp(1.25rem, 3vw, 2.5rem); border-radius: var(--radius-xs); box-shadow: var(--shadow-md);">
-              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1rem; gap: 0.5rem; flex-wrap: wrap;">
-                <h3 style="font-size: 1.4rem; color: var(--color-navy); margin: 0;">${t('footer.trOffice')}</h3>
-                <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 700; color: var(--color-gold); background: var(--color-navy); padding: 3px 8px; border-radius: 3px;">
-                  Istanbul DMC
-                </span>
-              </div>
-              <div style="font-weight: 600; color: var(--color-navy); margin-bottom: 0.5rem;">
-                Atalante Tours / Visit Anatolia
-              </div>
-              <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.25rem;">
-                Şemsettin Günaltay Cad. No: 148/3<br />
-                Erenköy, 34738 Kadıköy, İstanbul, Turkey
-              </p>
-              <div style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 1.25rem;">
-                <strong>Telephone:</strong> <a href="tel:+902163024325" style="color: var(--color-terracotta); font-weight: 600;">+90 (216) 302-4325</a>
-              </div>
-            </div>
+            ${isTr ? `${trOfficeCard}${usOfficeCard}` : `${usOfficeCard}${trOfficeCard}`}
           </div>
         </div>
       </section>

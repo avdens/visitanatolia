@@ -7,6 +7,7 @@ import { renderDestinationModal } from './components/DestinationModal.js';
 import { renderHomePage } from './pages/Home.js';
 import { renderDestinationsPage } from './pages/Destinations.js';
 import { renderJourneysPage } from './pages/Journeys.js';
+import { renderFITPage } from './pages/FIT.js';
 import { renderBiblicalToursPage } from './pages/BiblicalTours.js';
 import { renderExperiencesPage } from './pages/Experiences.js';
 import { renderServicesPage } from './pages/Services.js';
@@ -21,6 +22,7 @@ const ROUTE_TITLES = {
     '#/': 'Visit Anatolia | Tailor-Made Turkey Travel & Private Journeys',
     '#/destinations': 'Destinations in Turkey | Istanbul, Cappadocia, Ephesus & Riviera | Visit Anatolia',
     '#/journeys': 'Private Turkey Journeys & Custom Itineraries | Visit Anatolia',
+    '#/fit': 'FIT - Tailor-Made & Independent Travel | Visit Anatolia',
     '#/biblical-tours': 'Biblical Tours in Turkey & Seven Churches of Revelation | Visit Anatolia',
     '#/experiences': 'Signature Experiences & Special Interest Turkey Travel | Visit Anatolia',
     '#/services': 'DMC & Boutique Travel Services in Turkey | Visit Anatolia',
@@ -33,6 +35,7 @@ const ROUTE_TITLES = {
     '#/': 'Visit Anatolia | Kişiye Özel Türkiye Seyahatleri & Turlar',
     '#/destinations': 'Türkiye Destinasyonları | İstanbul, Kapadokya, Efes | Visit Anatolia',
     '#/journeys': 'Özel Türkiye Rotaları & Programlar | Visit Anatolia',
+    '#/fit': 'FIT - Kişiye Özel Bağımsız Seyahatler | Visit Anatolia',
     '#/biblical-tours': 'Türkiye İncil Turları & Yedi Kiliseler | Visit Anatolia',
     '#/experiences': 'Özel Deneyimler & Butik Turlar | Visit Anatolia',
     '#/services': 'DMC & Seyahat Hizmetleri | Visit Anatolia',
@@ -40,30 +43,6 @@ const ROUTE_TITLES = {
     '#/travel-professionals': 'Acenteler & B2B İş Birlikleri | Visit Anatolia',
     '#/journal': 'Anadolu Gezi Rehberi & İlham | Visit Anatolia',
     '#/contact': 'İletişim | ABD & İstanbul Ofisleri | Visit Anatolia'
-  },
-  ar: {
-    '#/': 'فيزيت أناتوليا | رحلات تركيا الخاصة والمخصصة',
-    '#/destinations': 'أبرز وجهات تركيا | إسطنبول، كابادوكيا، أفسس | فيزيت أناتوليا',
-    '#/journeys': 'رحلات وبرامج سياحية خاصة في تركيا | فيزيت أناتوليا',
-    '#/biblical-tours': 'جولات التراث التاريخي في آسيا الصغرى | فيزيت أناتوليا',
-    '#/experiences': 'تجارب وأنشطة حصرية في تركيا | فيزيت أناتوليا',
-    '#/services': 'خدمات إدارة الوجهات والسياحة الفاخرة | فيزيت أناتوليا',
-    '#/about': 'من نحن | أكثر من 30 عاماً من الخبرة السياحية | فيزيت أناتوليا',
-    '#/travel-professionals': 'لوكلاء السفر ومنظمي الرحلات (DMC) | فيزيت أناتوليا',
-    '#/journal': 'مجلة السفر ودليل الأناضول | فيزيت أناتوليا',
-    '#/contact': 'اتصل بنا | مكاتب الولايات المتحدة وإسطنبول | فيزيت أناتوليا'
-  },
-  fr: {
-    '#/': 'Visit Anatolia | Voyages d\'Exception & Sur Mesure en Turquie',
-    '#/destinations': 'Destinations en Turquie | Istanbul, Cappadoce, Éphèse | Visit Anatolia',
-    '#/journeys': 'Itinéraires Privés & Sur Mesure en Turquie | Visit Anatolia',
-    '#/biblical-tours': 'Circuits Bibliques & Sept Églises d\'Asie Mineure | Visit Anatolia',
-    '#/experiences': 'Expériences Signatures en Turquie | Visit Anatolia',
-    '#/services': 'Services Réceptifs & DMC en Turquie | Visit Anatolia',
-    '#/about': 'À Propos | 30+ Ans d\'Expertise Réceptive | Visit Anatolia',
-    '#/travel-professionals': 'Espace Professionnels du Voyage & DMC | Visit Anatolia',
-    '#/journal': 'Journal de Voyage & Inspirations Turquie | Visit Anatolia',
-    '#/contact': 'Contactez Visit Anatolia | Bureaux USA & Istanbul'
   }
 };
 
@@ -93,6 +72,9 @@ export function initRouter() {
         break;
       case '#/journeys':
         pageHtml = renderJourneysPage(params.get('id'));
+        break;
+      case '#/fit':
+        pageHtml = renderFITPage();
         break;
       case '#/biblical-tours':
         pageHtml = renderBiblicalToursPage();

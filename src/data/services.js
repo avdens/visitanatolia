@@ -117,7 +117,7 @@ export const SERVICES = [
     badge: "30+ Years Experience",
     icon: "briefcase",
     summary: "Turnkey planning for corporate incentive trips, international conferences, celebrations, and gala dinners.",
-    description: "Drawing on the vast event management expertise of Atalante Tours and Alexander and Troy LLC, we manage every facet of corporate travel and high-profile celebrations. From venue selection in historic Byzantine cisterns or Ottoman palaces to audiovisual production, keynote logistics, ground transportation, permits, private entertainment, and 24-hour on-site management.",
+    description: "Drawing on the vast event management expertise of Alexander and Troy LLC and Visit Anatolia, we manage every facet of corporate travel and high-profile celebrations. From venue selection in historic Byzantine cisterns or Ottoman palaces to audiovisual production, keynote logistics, ground transportation, permits, private entertainment, and 24-hour on-site management.",
     features: [
       "Unique heritage venues: Ottoman pavilions, historic docks, private islands, and cave complexes",
       "Complete audiovisual production, staging, simultaneous interpretation, and decor",

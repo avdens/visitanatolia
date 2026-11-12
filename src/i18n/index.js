@@ -7,9 +7,7 @@ import { DESTINATIONS } from '../data/destinations.js';
 
 export const SUPPORTED_LANGUAGES = [
   { code: 'en', name: 'English', flag: '🇺🇸', dir: 'ltr', label: 'English (US)' },
-  { code: 'tr', name: 'Türkçe', flag: '🇹🇷', dir: 'ltr', label: 'Türkçe' },
-  { code: 'ar', name: 'العربية', flag: '🇸🇦', dir: 'rtl', label: 'العربية' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷', dir: 'ltr', label: 'Français' }
+  { code: 'tr', name: 'Türkçe', flag: '🇹🇷', dir: 'ltr', label: 'Türkçe' }
 ];
 
 const STORAGE_KEY = 'visitanatolia_lang';
@@ -24,8 +22,6 @@ export function initI18n() {
     } else if (typeof navigator !== 'undefined') {
       const navLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
       if (navLang.startsWith('tr')) currentLang = 'tr';
-      else if (navLang.startsWith('ar')) currentLang = 'ar';
-      else if (navLang.startsWith('fr')) currentLang = 'fr';
       else currentLang = 'en';
     }
   }
@@ -58,16 +54,11 @@ export function setLanguage(lang) {
 
 function applyHtmlAttributes(lang) {
   if (typeof document === 'undefined') return;
-  const isRtl = lang === 'ar';
   document.documentElement.lang = lang;
-  document.documentElement.dir = isRtl ? 'rtl' : 'ltr';
+  document.documentElement.dir = 'ltr';
 
   if (document.body) {
-    if (isRtl) {
-      document.body.classList.add('is-rtl');
-    } else {
-      document.body.classList.remove('is-rtl');
-    }
+    document.body.classList.remove('is-rtl');
   }
 }
 

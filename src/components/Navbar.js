@@ -5,23 +5,58 @@ export function renderNavbar(activeRoute = '#/') {
   const isHome = activeRoute === '#/' || activeRoute === '' || activeRoute === '#';
   const currentLang = getLanguage();
   const currentLangMeta = getLanguageMeta();
+  const isTr = currentLang === 'tr';
 
   return `
     <header class="site-header ${isHome ? 'header-transparent' : 'header-solid scrolled'}" id="siteHeader">
-      <div class="container header-container">
-        <!-- Logo -->
-        <a href="#/" class="brand-logo-wrap" aria-label="Visit Anatolia Home">
-          <img src="/assets/real/logo.png" alt="Visit Anatolia Logo" class="brand-logo-img" />
-          <div class="brand-text">
-            <span class="brand-name">Visit Anatolia</span>
-            <span class="brand-sub">${t('nav.brandSub', 'Tailor-Made Turkey')}</span>
+      <!-- Top Prestige & Specialist Strip -->
+      <div class="header-topstrip">
+        <div class="header-topstrip-container">
+          <div class="topstrip-left">
+            <span class="topstrip-tag" lang="en">ALEXANDER AND TROY TOURS &middot; SINCE 1999</span>
+            <span class="topstrip-sep">&bull;</span>
+            <span class="topstrip-highlight" lang="en">TURKEY MICE SPECIALIST</span>
           </div>
-        </a>
+          <div class="topstrip-right">
+            ${isTr ? `
+              <a href="tel:+902163024325" class="topstrip-link">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>Main Ofis: +90 (216) 302-4325</span>
+              </a>
+              <span class="topstrip-sep">|</span>
+              <a href="tel:+12014902212" class="topstrip-link">
+                <span>US: +1 (201) 490-2212</span>
+              </a>
+            ` : `
+              <a href="tel:+12014902212" class="topstrip-link">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span lang="en">MAIN OFFICE: +1 (201) 490-2212</span>
+              </a>
+              <span class="topstrip-sep">|</span>
+              <a href="tel:+902163024325" class="topstrip-link">
+                <span>TR: +90 (216) 302-4325</span>
+              </a>
+            `}
+          </div>
+        </div>
+      </div>
+
+      <div class="header-main-nav">
+        <div class="container header-container">
+          <!-- Logo -->
+          <a href="#/" class="brand-logo-wrap" aria-label="Visit Anatolia Home">
+            <img src="/assets/real/logo.png" alt="Visit Anatolia Logo" class="brand-logo-img" />
+            <div class="brand-text">
+              <span class="brand-name">Visit Anatolia</span>
+              <span class="brand-sub" lang="en">ALEXANDER AND TROY TOURS &middot; SINCE 1999</span>
+            </div>
+          </a>
 
         <!-- Desktop Navigation -->
         <nav class="main-nav" aria-label="Main Navigation">
           <a href="#/destinations" class="nav-link ${activeRoute === '#/destinations' ? 'active' : ''}">${t('nav.destinations', 'Destinations')}</a>
           <a href="#/journeys" class="nav-link ${activeRoute === '#/journeys' ? 'active' : ''}">${t('nav.journeys', 'Journeys')}</a>
+          <a href="#/fit" class="nav-link ${activeRoute === '#/fit' ? 'active' : ''}">${t('nav.fit', 'FIT')}</a>
           <a href="#/biblical-tours" class="nav-link ${activeRoute === '#/biblical-tours' ? 'active' : ''}">${t('nav.biblicalTours', 'Biblical Tours')}</a>
           <a href="#/experiences" class="nav-link ${activeRoute === '#/experiences' ? 'active' : ''}">${t('nav.experiences', 'Experiences')}</a>
           <a href="#/services" class="nav-link ${activeRoute === '#/services' ? 'active' : ''}">${t('nav.services', 'Services')}</a>
@@ -66,6 +101,7 @@ export function renderNavbar(activeRoute = '#/') {
           </button>
         </div>
       </div>
+      </div>
     </header>
 
     <!-- Mobile Drawer Backdrop & Drawer -->
@@ -75,7 +111,7 @@ export function renderNavbar(activeRoute = '#/') {
 
       <!-- Mobile Language Picker -->
       <div class="mobile-lang-picker">
-        <span class="mobile-lang-title">Language / Dil / اللغة / Langue</span>
+        <span class="mobile-lang-title">Language / Dil</span>
         <div class="mobile-lang-grid">
           ${SUPPORTED_LANGUAGES.map(lang => `
             <button class="mobile-lang-btn ${lang.code === currentLang ? 'active' : ''}" type="button" data-lang="${lang.code}">
@@ -90,6 +126,7 @@ export function renderNavbar(activeRoute = '#/') {
         <a href="#/" class="mobile-nav-link ${isHome ? 'active' : ''}">${t('nav.home', 'Home')}</a>
         <a href="#/destinations" class="mobile-nav-link ${activeRoute === '#/destinations' ? 'active' : ''}">${t('nav.destinations', 'Destinations')}</a>
         <a href="#/journeys" class="mobile-nav-link ${activeRoute === '#/journeys' ? 'active' : ''}">${t('nav.journeys', 'Private Journeys')}</a>
+        <a href="#/fit" class="mobile-nav-link ${activeRoute === '#/fit' ? 'active' : ''}">${t('nav.fit', 'FIT')}</a>
         <a href="#/biblical-tours" class="mobile-nav-link ${activeRoute === '#/biblical-tours' ? 'active' : ''}">${t('nav.biblicalTours', 'Biblical Tours')}</a>
         <a href="#/experiences" class="mobile-nav-link ${activeRoute === '#/experiences' ? 'active' : ''}">${t('nav.experiences', 'Signature Experiences')}</a>
         <a href="#/services" class="mobile-nav-link ${activeRoute === '#/services' ? 'active' : ''}">${t('nav.services', 'Services & DMC')}</a>

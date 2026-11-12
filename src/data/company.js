@@ -3,24 +3,24 @@ export const COMPANY_INFO = {
   tagline: "Turkey Travel Experts for Tailor-Made Journeys",
   positioning: "Boutique Destination Management & Bespoke Travel Designer",
   foundingStory: {
-    history: "VISITANATOLIA.COM was established as an initiative uniting 'Alexander and Troy LLC' (U.S.-based specialist in distinctive customized tours, meetings, incentives, and conference travel based in Englewood, New Jersey) and 'Atalante Tours' (a next-generation event and destination management agency based in Istanbul, Turkey), alongside premier Turkish travel industry experts.",
+    history: "VISITANATOLIA.COM was established as an initiative of 'Alexander and Troy LLC' (U.S.-based specialist in distinctive customized tours, meetings, incentives, and conference travel based in Englewood, New Jersey), alongside premier Turkish travel industry experts.",
     experienceYears: "30+",
     summary: "With more than 30 years of collective expertise in the field, our team unites deep Turkish local heritage with American standards of executive service, precision planning, and personalized hospitality."
   },
   offices: [
     {
       country: "United States",
-      title: "USA Headquarters",
+      title: "Main Office",
       entity: "Alexander and Troy LLC",
       address: "500 Nordhoff Pl",
       cityStateZip: "Englewood, NJ 07631, USA",
       phones: ["+1 201 490 2212", "+1 201 636 5082"],
-      badge: "US Client Advisory & Operations"
+      badge: "Main Office & Operations"
     },
     {
       country: "Turkey",
       title: "Turkey Operations & DMC Office",
-      entity: "Atalante Tours / Visit Anatolia",
+      entity: "Visit Anatolia",
       address: "Şemsettin Günaltay Cad. No: 148/3",
       cityStateZip: "Erenköy, 34738 Kadıköy, İstanbul, Turkey",
       phones: ["+90 216 302 4325"],

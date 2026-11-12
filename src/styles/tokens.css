@@ -73,11 +73,11 @@
   /* Layout */
   --container-max: 1320px;
   --container-narrow: 1040px;
-  --header-height: 84px;
+  --header-height: 100px;
 }
 
 @media (max-width: 768px) {
   :root {
-    --header-height: 70px;
+    --header-height: 94px;
   }
 }
